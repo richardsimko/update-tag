@@ -6,12 +6,12 @@ inputs:
     description: "Required for permission to tag the repo."
     required: true
   tag_name:
-    description: "Which type of bump to use when none explicitly provided (default: `patch`)."
+    description: "Name of tag to be used"
     required: true
 
 runs:
-  using: "node12"
-  main: "src/main.js"
+  using: 'docker'
+  image: 'Dockerfile'
 branding:
   icon: "git-merge"
   color: "purple"
