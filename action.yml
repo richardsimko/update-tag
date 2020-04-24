@@ -6,12 +6,12 @@ inputs:
     description: "Required for permission to tag the repo."
     required: true
   tag_name:
-    description: "Name of tag to be used"
+    description: "Name of the tag to create or update"
     required: true
 
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "node12"
+  main: "src/main.js"
 branding:
-  icon: "git-merge"
-  color: "purple"
+  icon: "tag"
+  color: "green"
