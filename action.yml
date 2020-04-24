@@ -1,0 +1,17 @@
+name: "Github Tag"
+description: "Update the provided tag in the Github repo"
+author: "Richard Simko"
+inputs:
+  github_token:
+    description: "Required for permission to tag the repo."
+    required: true
+  tag_name:
+    description: "Which type of bump to use when none explicitly provided (default: `patch`)."
+    required: true
+
+runs:
+  using: "node12"
+  main: "src/main.js"
+branding:
+  icon: "git-merge"
+  color: "purple"
