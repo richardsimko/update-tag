@@ -3,9 +3,8 @@ const { GitHub, context } = require('@actions/github');
 async function run() {
 
   try {
-    const { GITHUB_REF, GITHUB_SHA } = process.env;
+    const { GITHUB_REF, GITHUB_SHA, GITHUB_TOKEN } = process.env;
     const tagName = core.getInput('tag_name');
-    const githubToken = core.getInput('github_token');
     if (!GITHUB_REF) {
       core.setFailed('Missing GITHUB_REF');
       return;
@@ -16,16 +15,18 @@ async function run() {
       return;
     }
 
+    if (!GITHUB_TOKEN) {
+      core.setFailed('Missing GITHUB_TOKEN');
+      return;
+    }
+
     if (!tagName) {
       core.setFailed('Missing tag_name');
       return;
     }
 
-    if (!githubToken) {
-      core.setFailed('Missing github_token');
-      return;
-    }
-    const octokit = new GitHub(githubToken);
+
+    const octokit = new GitHub(GITHUB_TOKEN);
     let ref;
     try {
 
