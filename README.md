@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Tag Repo
-            uses: richardsimko/github-tag-action@master
+            uses: richardsimko/update-tag@master
             with:
               tag_name: name-of-tag
             env:
