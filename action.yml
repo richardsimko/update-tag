@@ -2,9 +2,6 @@ name: "Update Tag"
 description: "Update the provided tag in the Github repo"
 author: "Richard Simko"
 inputs:
-  github_token:
-    description: "Required for permission to tag the repo."
-    required: true
   tag_name:
     description: "Name of the tag to create or update"
     required: true
