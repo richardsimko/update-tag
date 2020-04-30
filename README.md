@@ -12,11 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Tag Repo
-            uses: richardsimko/update-tag@master
-            with:
-              tag_name: name-of-tag
-            env:
-              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: richardsimko/update-tag@master
+        with:
+          tag_name: name-of-tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ### Inputs
