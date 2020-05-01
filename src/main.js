@@ -3,13 +3,8 @@ const { GitHub, context } = require('@actions/github');
 async function run() {
 
   try {
-    const { GITHUB_REF, GITHUB_SHA, GITHUB_TOKEN } = process.env;
+    const { GITHUB_SHA, GITHUB_TOKEN } = process.env;
     const tagName = core.getInput('tag_name');
-    if (!GITHUB_REF) {
-      core.setFailed('Missing GITHUB_REF');
-      return;
-    }
-
     if (!GITHUB_SHA) {
       core.setFailed('Missing GITHUB_SHA');
       return;
