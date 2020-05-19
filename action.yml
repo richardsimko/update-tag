@@ -1,5 +1,5 @@
 name: "Update Tag"
-description: "Update the provided tag in the Github repo"
+description: "Update the provided tag in the GitHub repo"
 author: "Richard Simko"
 inputs:
   tag_name:
