@@ -6,7 +6,7 @@
   "author": "Richard Simko <rick.simko@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.2.3",
+    "@actions/core": "^1.2.6",
     "@actions/github": "^2.1.1"
   }
 }
