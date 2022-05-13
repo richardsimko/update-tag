@@ -1,0 +1,21 @@
+name: Make a tag
+on:
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        type: string
+        required: true
+      tag_ref:
+        type: string
+        required: true
+
+
+jobs:
+  test:
+    name: Autopatch dependencies.
+    runs-on: ubuntu-latest
+    steps:
+      uses: ./
+      with:
+        tag_name: github.event.inputs.tag_name
+        tag_ref: github.event.inputs.tag_ref

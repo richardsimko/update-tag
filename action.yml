@@ -7,7 +7,7 @@ inputs:
     required: true
 
 runs:
-  using: "node12"
+  using: "node18"
   main: "src/main.js"
 branding:
   icon: "tag"
