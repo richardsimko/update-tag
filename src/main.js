@@ -24,18 +24,15 @@ async function run() {
     const octokit = new GitHub(GITHUB_TOKEN);
 
     let sha;
-    let shouldSkip = false;
-    
     try {
       response = octokit.rest.git.getRef({
         ...context.repo,
         ref: prefix + tagSha,
       });
 
-			if object in response and sha in response.object:
-				sha = response["object"]["sha"];
-				shouldSkip = true;
-			}
+      if 'object' in response and 'sha' in response.object:
+        sha = response.object.sha;
+      }
     } catch(e) {
       if (e.status === 404) {
         continue;
@@ -44,7 +41,7 @@ async function run() {
     }
 
     ["heads/", "branch/"].foreach((prefix) => {
-      if(shouldSkip) {
+      if(sha !== undefined) {
         return;
       }
       try {
@@ -52,9 +49,8 @@ async function run() {
           ...context.repo,
         ref: prefix + tagSha,
         });
-        if object in response and sha in response.object:
-          sha = response["object"]["sha"];
-          shouldSkip = true;
+        if 'object' in response and 'sha' in response.object:
+          sha = response.object.sha;
         }
       } catch(e) {
         if (e.status === 404) { 
