@@ -15,6 +15,7 @@ jobs:
     name: Autopatch dependencies.
     runs-on: ubuntu-latest
     steps:
+    - name: Make the tag
       uses: ./
       with:
         tag_name: github.event.inputs.tag_name
