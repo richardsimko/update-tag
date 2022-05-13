@@ -5,6 +5,9 @@ inputs:
   tag_name:
     description: "Name of the tag to create or update"
     required: true
+  tag_ref:
+    description: "A Git SHA, branch, or tag to be the source of the tag"
+    required: false
 
 runs:
   using: "node16"
