@@ -30,7 +30,7 @@ async function run() {
         ref: prefix + tagSha,
       });
 
-      if 'object' in response and 'sha' in response.object:
+      if ('object' in response and 'sha' in response.object):
         sha = response.object.sha;
       }
     } catch(e) {
@@ -49,7 +49,7 @@ async function run() {
           ...context.repo,
         ref: prefix + tagSha,
         });
-        if 'object' in response and 'sha' in response.object:
+        if ('object' in response and 'sha' in response.object):
           sha = response.object.sha;
         }
       } catch(e) {
