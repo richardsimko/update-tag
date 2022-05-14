@@ -2,11 +2,26 @@
   "name": "github-tag-action",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:richardsimko/github-tag-action.git",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/richardsimko/github-tag-action.git"
+  },
   "author": "Richard Simko <rick.simko@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.2.6",
     "@actions/github": "^2.1.1"
+  },
+  "description": "A GitHub action that simply tags the repository with the specified tag. If the tag exists it gets updated.",
+  "bugs": {
+    "url": "https://github.com/richardsimko/github-tag-action/issues"
+  },
+  "homepage": "https://github.com/richardsimko/github-tag-action#readme",
+  "devDependencies": {
+    "eslint": ">=5.16.0",
+    "eslint-config-google": "^0.14.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }

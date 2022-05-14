@@ -5,9 +5,12 @@ inputs:
   tag_name:
     description: "Name of the tag to create or update"
     required: true
+  tag_ref:
+    description: "A Git SHA, branch, or tag to be the source of the tag"
+    required: false
 
 runs:
-  using: "node12"
+  using: "node16"
   main: "src/main.js"
 branding:
   icon: "tag"

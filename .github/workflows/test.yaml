@@ -1,0 +1,25 @@
+name: Make a tag
+on:
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        type: string
+        required: true
+      tag_ref:
+        type: string
+        required: false
+
+
+jobs:
+  test:
+    name: Make the tag
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Make the tag
+      uses: ./
+      with:
+        tag_name: ${{ github.event.inputs.tag_name }}
+        tag_ref: ${{ github.event.inputs.tag_ref }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
