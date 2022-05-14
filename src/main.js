@@ -25,7 +25,7 @@ async function run() {
 
     if (sha === undefined) {
       try {
-        response = octokit.git.getRef({
+        response = octokit.git.getCommit({
           ...context.repo,
           ref: tagSha,
         });
@@ -44,7 +44,7 @@ async function run() {
         return;
       }
       try {
-        response = octokit.rest.git.getRef({
+        response = await octokit.git.getRef({
           ...context.repo,
           ref: prefix + tagSha,
         });
@@ -52,7 +52,6 @@ async function run() {
           sha = response.object.sha;
         }
       } catch (e) {
-        console.log(e.status)
         if (e.status == 404) {
           return;
         }
