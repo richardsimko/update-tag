@@ -6,13 +6,8 @@ async function run() {
     const tagName = core.getInput('tag_name');
     const tagRef = core.getInput('tag_ref');
 
-    let sha;
-    if (!tagRef) {
-      sha = GITHUB_SHA;
-    }
-
     if (!GITHUB_TOKEN) {
-      core.setFailed('Missing GITHUB_TOKEN');
+      core.setFailed('Missing GITHUB_TOKEN. Set env.GITHUB_TOKEN := secrets.GITHUB_TOKEN');
       return;
     }
 
@@ -21,46 +16,39 @@ async function run() {
       return;
     }
 
-    const octokit = new GitHub(GITHUB_TOKEN);
-    if (sha === undefined) {
-      console.log("Checking if we're a commit hash")
-      try {
-        response = await octokit.git.getCommit({
-          ...context.repo,
-          commit_sha: tagRef,
-        });
-
-        if ('object' in response && 'sha' in response.object) {
-          sha = response.object.sha;
-        }
-      } catch (e) {
-        if (e.status != 404) {
-          throw ( e );
-        }
-        console.log("We are not a commit")
-      }
+    let sha;
+    if (!tagRef) {
+      console.log(`No tag_ref provided; Using ${GITHUB_SHA}`)
+      sha = GITHUB_SHA;
     }
 
-    for (const prefix of ['heads/', 'tags/']) {
+    for (const prefix of ['', 'heads/', 'tags/']) {
       if (sha !== undefined) {
         break;
       }
       let requestRef = prefix + tagRef
       console.log(`Checking if we are ref ${requestRef}`)
       try {
-        response = await octokit.git.getRef({
-          ...context.repo,
-          ref: requestRef,
+        // Do something funky with objects
+        // Or do a much more readable if-statement
+        let response;
+        if (!prefix) {
+          response = await octokit.git.getCommit({
+            ...context.repo,
+            commit_sha: tagRef,
+          });
+        } else {
+          response = await octokit.git.getRef({
+            ...context.repo,
+            ref: requestRef,
         });
-        console.log(response);
-        if ('object' in response && 'sha' in response.object) {
-          sha = response.object.sha;
+        if ('object' in response.data && 'sha' in response.data.object) {
+          sha = response.data.object.sha;
         }
       } catch (e) {
         if (e.status != 404) {
           throw ( e );
         }
-        console.log(`Ref ${requestRef} not found`)
       }
     }
 
