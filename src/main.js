@@ -7,7 +7,8 @@ async function run() {
     const tagRef = core.getInput('tag_ref');
 
     if (!GITHUB_TOKEN) {
-      core.setFailed('Missing GITHUB_TOKEN. Set env.GITHUB_TOKEN := secrets.GITHUB_TOKEN');
+      core.setFailed(
+          'Missing GITHUB_TOKEN. Set env.GITHUB_TOKEN := secrets.GITHUB_TOKEN');
       return;
     }
 
@@ -18,16 +19,18 @@ async function run() {
 
     let sha;
     if (!tagRef) {
-      console.log(`No tag_ref provided; Using ${GITHUB_SHA}`)
+      console.log(`No tag_ref provided; Using ${GITHUB_SHA}`);
       sha = GITHUB_SHA;
     }
+
+    const octokit = new GitHub(GITHUB_TOKEN);
 
     for (const prefix of ['', 'heads/', 'tags/']) {
       if (sha !== undefined) {
         break;
       }
-      let requestRef = prefix + tagRef
-      console.log(`Checking if we are ref ${requestRef}`)
+      const requestRef = prefix + tagRef;
+      console.log(`Checking if we are ref ${requestRef}`);
       try {
         // Do something funky with objects
         // Or do a much more readable if-statement
@@ -41,7 +44,8 @@ async function run() {
           response = await octokit.git.getRef({
             ...context.repo,
             ref: requestRef,
-        });
+          });
+        }
         if ('object' in response.data && 'sha' in response.data.object) {
           sha = response.data.object.sha;
         }
@@ -58,7 +62,7 @@ async function run() {
       return;
     }
 
-    console.log(`Found ref ${tagRef} as commit ${sha}`)
+    console.log(`Found ref ${tagRef} as commit ${sha}`);
 
     let ref;
     try {
