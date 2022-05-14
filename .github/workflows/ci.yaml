@@ -51,6 +51,6 @@ jobs:
         tag_name: test-with-tag-tag
         # This is a tag
         tag_ref: tests-will-break-if-deleted
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.CI_GITHUB_TOKEN }}
 
 

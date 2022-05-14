@@ -8,7 +8,7 @@ async function run() {
 
     if (!GITHUB_TOKEN) {
       core.setFailed(
-          'Missing GITHUB_TOKEN. Set env.GITHUB_TOKEN := secrets.GITHUB_TOKEN');
+          'Missing github_token.');
       return;
     }
 
@@ -81,14 +81,14 @@ async function run() {
       }
     }
     if (!ref) {
-      console.log(`Creating tag ${tagName}`);
+      console.log(`Creating tag ${tagName} at sha ${sha}`);
       await octokit.git.createRef({
         ...context.repo,
         ref: `refs/tags/${tagName}`,
         sha: sha,
       });
     } else {
-      console.log(`Updating tag ${tagName}`);
+      console.log(`Updating tag ${tagName} to sha ${sha}`);
       await octokit.git.updateRef({
         ...context.repo,
         ref: `tags/${tagName}`,

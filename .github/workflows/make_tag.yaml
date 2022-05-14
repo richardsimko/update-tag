@@ -28,3 +28,4 @@ jobs:
       with:
         tag_name: ${{ github.event.inputs.tag_name }}
         tag_ref: ${{ github.event.inputs.tag_ref }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
