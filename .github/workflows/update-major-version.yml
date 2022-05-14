@@ -1,5 +1,6 @@
 name: Update version reference
 on:
+  workflow_dispatch:
   release:
     types: [edited, published]
 jobs:
@@ -10,13 +11,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Extract major version from tag
+        id: major_version
         run: |
           FULL_VERSION=${GITHUB_REF##*/}
           MAJOR_VERSION=$(echo "${FULL_VERSION%.*.*}")
-          echo "::set-env name=TAG_NAME::${MAJOR_VERSION}"
+          echo "::set-output name=TAG_NAME::${MAJOR_VERSION}"
       - name: Update reference to latest version
         uses: ./
         with:
-          tag_name: ${{ env.TAG_NAME }}
+          tag_name: ${{ steps.major_version.outputs.TAG_NAME }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
