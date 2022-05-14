@@ -34,12 +34,13 @@ async function run() {
           sha = response.object.sha;
         }
       } catch (e) {
-        if (e.status === 404) {}
-        throw ( e );
+        if (e.status != 404) {
+          throw ( e );
+        }
       }
     }
 
-    for (const prefix of ['heads/', 'branch/']) {
+    for (const prefix of ['heads/', 'tags/']) {
       if (sha !== undefined) {
         break;
       }
