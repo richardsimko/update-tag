@@ -4,7 +4,7 @@ async function run() {
   try {
     const {GITHUB_SHA, GITHUB_TOKEN} = process.env;
     const tagName = core.getInput('tag_name');
-    const tagSha = core.getInput('tag_name');
+    const tagSha = core.getInput('tag_ref');
 
     let sha;
     if (!tagSha) {
@@ -45,7 +45,7 @@ async function run() {
         break;
       }
       try {
-        console.log(prefix + tagSha)
+        console.log(prefix + tagSha);
         response = await octokit.git.getRef({
           ...context.repo,
           ref: prefix + tagSha,
@@ -59,7 +59,7 @@ async function run() {
         }
         throw ( e );
       }
-    });
+    }
 
     if (sha === undefined) {
       core.setFailed(
