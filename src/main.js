@@ -5,6 +5,7 @@ async function run() {
     const {GITHUB_SHA, GITHUB_TOKEN} = process.env;
     const tagName = core.getInput('tag_name');
     const tagSha = core.getInput('tag_name');
+
     let sha;
     if (!tagSha) {
       sha = GITHUB_SHA;
@@ -91,6 +92,7 @@ async function run() {
       });
     }
   } catch (error) {
+    console.log(error);
     core.setFailed(error.message);
   }
 }
