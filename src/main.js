@@ -44,6 +44,7 @@ async function run() {
         return;
       }
       try {
+        console.log(prefix + tagSha)
         response = octokit.git.getRef({
           ...context.repo,
           ref: prefix + tagSha,
@@ -61,7 +62,7 @@ async function run() {
 
     if (sha === undefined) {
       core.setFailed(
-          'ref ${tagSha} could not be detected as a sha, branch, or tag!');
+          "ref ${tagSha} could not be detected as a sha, branch, or tag!");
       return;
     }
 
