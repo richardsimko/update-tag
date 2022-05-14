@@ -1,5 +1,6 @@
 name: Update version reference
 on:
+  workflow_dispatch:
   release:
     types: [edited, published]
 jobs:
