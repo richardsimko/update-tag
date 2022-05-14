@@ -44,7 +44,7 @@ async function run() {
         return;
       }
       try {
-        response = await octokit.git.getRef({
+        response = octokit.git.getRef({
           ...context.repo,
           ref: prefix + tagSha,
         });
