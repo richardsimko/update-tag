@@ -52,6 +52,7 @@ async function run() {
           ...context.repo,
           ref: requestRef,
         });
+        console.log(response);
         if ('object' in response && 'sha' in response.object) {
           sha = response.object.sha;
         }
