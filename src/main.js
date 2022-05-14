@@ -52,7 +52,8 @@ async function run() {
           sha = response.object.sha;
         }
       } catch (e) {
-        if (e.status === 404) {
+        console.log(e.status)
+        if (e.status == 404) {
           return;
         }
         throw ( e );
@@ -72,7 +73,7 @@ async function run() {
         ref: `tags/${tagName}`,
       });
     } catch (e) {
-      if (e.status === 404) {
+      if (e.status == 404) {
         // Ignore tag not existing
       } else {
         throw e;
