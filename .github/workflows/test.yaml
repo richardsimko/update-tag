@@ -21,3 +21,5 @@ jobs:
       with:
         tag_name: github.event.inputs.tag_name
         tag_ref: github.event.inputs.tag_ref
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
