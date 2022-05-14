@@ -25,7 +25,7 @@ async function run() {
 
     if (sha === undefined) {
       try {
-        response = octokit.git.getCommit({
+        response = await octokit.git.getCommit({
           ...context.repo,
           commit_sha: tagSha,
         });
@@ -39,13 +39,14 @@ async function run() {
       }
     }
 
-    ['heads/', 'branch/'].forEach(prefix => {
+
+    for (const prefix of ['heads/', 'branch/']) {
       if (sha !== undefined) {
-        return;
+        break;
       }
       try {
         console.log(prefix + tagSha)
-        response = octokit.git.getRef({
+        response = await octokit.git.getRef({
           ...context.repo,
           ref: prefix + tagSha,
         });
@@ -62,7 +63,7 @@ async function run() {
 
     if (sha === undefined) {
       core.setFailed(
-          "ref ${tagSha} could not be detected as a sha, branch, or tag!");
+          `ref ${tagSha} could not be detected as a sha, branch, or tag!`);
       return;
     }
 
