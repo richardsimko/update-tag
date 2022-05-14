@@ -1,0 +1,23 @@
+name: tag
+description: Tag the repo
+inputs:
+  github_token:
+    description: 'A Github PAT'
+    required: true
+  tag_name:
+    type: string
+    required: true
+  tag_ref:
+    type: string
+    required: false
+
+runs:
+  using: "composite"
+  steps:
+  - name: Make the tag
+    uses: ./
+    with:
+      tag_name: ${{ inputs.tag_name }}
+      tag_ref: ${{ inputs.tag_ref }}
+    env:
+      GITHUB_TOKEN: ${{ inputs.github_token }}

@@ -1,0 +1,56 @@
+name: ci
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  test-empty:
+    name:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Make the tag
+      uses: ./.github/actions/tag
+      with:
+        tag_name: test-empty-tag
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+  test-with-sha:
+    name:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Make the tag
+      uses: ./.github/actions/tag
+      with:
+        tag_name: test-with-sha-tag
+        tag_ref: ${{ env.GITHUB_SHA }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+  test-with-branch:
+    name:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Make the tag
+      uses: ./.github/actions/tag
+      with:
+        tag_name: test-with-branch-tag
+        tag_ref: main
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+  test-with-tag:
+    name:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Make the tag
+      uses: ./.github/actions/tag
+      with:
+        tag_name: test-with-tag-tag
+        # This is a tag
+        tag_ref: tests-will-break-if-deleted
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+
+

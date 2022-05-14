@@ -8,7 +8,14 @@ on:
       tag_ref:
         type: string
         required: false
-
+  workflow_call:
+    inputs:
+      tag_name:
+        type: string
+        required: true
+      tag_ref:
+        type: string
+        required: false
 
 jobs:
   test:
@@ -17,9 +24,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Make the tag
-      uses: ./
+      uses: ./.github/actions/tag
       with:
         tag_name: ${{ github.event.inputs.tag_name }}
         tag_ref: ${{ github.event.inputs.tag_ref }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
