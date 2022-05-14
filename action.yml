@@ -1,6 +1,6 @@
-name: "Update Tag"
+name: "Update Tag to random ref"
 description: "Update the provided tag in the GitHub repo"
-author: "Richard Simko"
+author: "Richard Simko + Kevin Meyer"
 inputs:
   tag_name:
     description: "Name of the tag to create or update"
