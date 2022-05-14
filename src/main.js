@@ -37,6 +37,7 @@ async function run() {
         if (e.status != 404) {
           throw ( e );
         }
+        console.log("We are not a commit")
       }
     }
 
@@ -45,9 +46,8 @@ async function run() {
         break;
       }
       let requestRef = prefix + tagRef
-      console.log(`Checking if prefix ${requestRef}`)
+      console.log(`Checking if we are ref ${requestRef}`)
       try {
-        console.log(requestRef);
         response = await octokit.git.getRef({
           ...context.repo,
           ref: requestRef,
@@ -56,10 +56,10 @@ async function run() {
           sha = response.object.sha;
         }
       } catch (e) {
-        if (e.status == 404) {
-            continue
+        if (e.status != 404) {
+          throw ( e );
         }
-        throw ( e );
+        console.log(`Ref ${requestRef} not found`)
       }
     }
 
