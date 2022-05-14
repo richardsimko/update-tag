@@ -39,7 +39,7 @@ async function run() {
       }
     }
 
-    ['heads/', 'branch/'].foreach(prefix => {
+    ['heads/', 'branch/'].forEach(prefix => {
       if (sha !== undefined) {
         return;
       }
