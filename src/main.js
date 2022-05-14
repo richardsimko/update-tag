@@ -27,7 +27,7 @@ async function run() {
       try {
         response = octokit.git.getRef({
           ...context.repo,
-          ref: prefix + tagSha,
+          ref: tagSha,
         });
 
         if ('object' in response && 'sha' in response.object) {
@@ -39,7 +39,7 @@ async function run() {
       }
     }
 
-    ['heads/', 'branch/'].foreach((prefix) => {
+    ['heads/', 'branch/'].foreach(prefix => {
       if (sha !== undefined) {
         return;
       }
