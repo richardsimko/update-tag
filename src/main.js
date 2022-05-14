@@ -1,14 +1,13 @@
 const core = require('@actions/core');
-const { GitHub, context } = require('@actions/github');
+const {GitHub, context} = require('@actions/github');
 async function run() {
-
   try {
-    const { GITHUB_SHA, GITHUB_TOKEN } = process.env;
+    const {GITHUB_SHA, GITHUB_TOKEN} = process.env;
     const tagName = core.getInput('tag_name');
     const tagSha = core.getInput('tag_name');
     let sha;
     if (!tagSha) {
-        sha = GITHUB_SHA
+      sha = GITHUB_SHA;
     }
 
     if (!GITHUB_TOKEN) {
@@ -23,46 +22,45 @@ async function run() {
 
     const octokit = new GitHub(GITHUB_TOKEN);
 
-    if (sha === undefined) { 
+    if (sha === undefined) {
       try {
         response = octokit.rest.git.getRef({
           ...context.repo,
           ref: prefix + tagSha,
         });
 
-        if ('object' in response && 'sha' in response.object):
+        if ('object' in response && 'sha' in response.object) {
           sha = response.object.sha;
         }
-      } catch(e) {
-        if (e.status === 404) {
-          continue;
-        }
-        throw( e );
+      } catch (e) {
+        if (e.status === 404) {}
+        throw ( e );
       }
     }
 
-    ["heads/", "branch/"].foreach((prefix) => {
-      if(sha !== undefined) {
+    ['heads/', 'branch/'].foreach((prefix) => {
+      if (sha !== undefined) {
         return;
       }
       try {
         response = octokit.rest.git.getRef({
           ...context.repo,
-        ref: prefix + tagSha,
+          ref: prefix + tagSha,
         });
-        if ('object' in response && 'sha' in response.object):
+        if ('object' in response && 'sha' in response.object) {
           sha = response.object.sha;
         }
-      } catch(e) {
-        if (e.status === 404) { 
-          continue;
+      } catch (e) {
+        if (e.status === 404) {
+          return;
         }
-        throw( e );
+        throw ( e );
       }
-    })
+    });
 
     if (sha === undefined) {
-      core.setFailed('ref ${tagSha} could not be detected as a sha, branch, or tag!');
+      core.setFailed(
+          'ref ${tagSha} could not be detected as a sha, branch, or tag!');
       return;
     }
 
@@ -70,7 +68,7 @@ async function run() {
     try {
       ref = await octokit.git.getRef({
         ...context.repo,
-        ref: `tags/${tagName}`
+        ref: `tags/${tagName}`,
       });
     } catch (e) {
       if (e.status === 404) {
@@ -83,16 +81,15 @@ async function run() {
       await octokit.git.createRef({
         ...context.repo,
         ref: `refs/tags/${tagName}`,
-        sha: sha
+        sha: sha,
       });
     } else {
       await octokit.git.updateRef({
         ...context.repo,
         ref: `tags/${tagName}`,
-        sha: sha
+        sha: sha,
       });
     }
-
   } catch (error) {
     core.setFailed(error.message);
   }
