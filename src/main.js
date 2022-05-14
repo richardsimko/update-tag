@@ -25,7 +25,7 @@ async function run() {
 
     if (sha === undefined) {
       try {
-        response = octokit.rest.git.getRef({
+        response = octokit.git.getRef({
           ...context.repo,
           ref: prefix + tagSha,
         });
