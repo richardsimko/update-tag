@@ -27,7 +27,7 @@ async function run() {
       try {
         response = octokit.git.getCommit({
           ...context.repo,
-          ref: tagSha,
+          commit_sha: tagSha,
         });
 
         if ('object' in response && 'sha' in response.object) {
