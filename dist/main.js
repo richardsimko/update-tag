@@ -5,7 +5,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = __importDefault(require("@actions/core"));
 const github_1 = __importDefault(require("@actions/github"));
-const context = github_1.default.context;
 async function run() {
     try {
         const { GITHUB_SHA, GITHUB_TOKEN } = process.env;
@@ -26,7 +25,7 @@ async function run() {
         let ref;
         try {
             ref = await octokit.rest.git.getRef({
-                ...context.repo,
+                ...github_1.default.context.repo,
                 ref: `tags/${tagName}`,
             });
         }
@@ -40,14 +39,14 @@ async function run() {
         }
         if (!ref) {
             await octokit.rest.git.createRef({
-                ...context.repo,
+                ...github_1.default.context.repo,
                 ref: `refs/tags/${tagName}`,
                 sha: GITHUB_SHA,
             });
         }
         else {
             await octokit.rest.git.updateRef({
-                ...context.repo,
+                ...github_1.default.context.repo,
                 ref: `tags/${tagName}`,
                 sha: GITHUB_SHA,
             });

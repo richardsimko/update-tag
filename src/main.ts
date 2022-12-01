@@ -1,6 +1,6 @@
 import core from "@actions/core";
 import github from "@actions/github";
-const context = github.context;
+
 async function run() {
   try {
     const { GITHUB_SHA, GITHUB_TOKEN } = process.env;
@@ -24,7 +24,7 @@ async function run() {
     let ref;
     try {
       ref = await octokit.rest.git.getRef({
-        ...context.repo,
+        ...github.context.repo,
         ref: `tags/${tagName}`,
       });
     } catch (e) {
@@ -36,13 +36,13 @@ async function run() {
     }
     if (!ref) {
       await octokit.rest.git.createRef({
-        ...context.repo,
+        ...github.context.repo,
         ref: `refs/tags/${tagName}`,
         sha: GITHUB_SHA,
       });
     } else {
       await octokit.rest.git.updateRef({
-        ...context.repo,
+        ...github.context.repo,
         ref: `tags/${tagName}`,
         sha: GITHUB_SHA,
       });
