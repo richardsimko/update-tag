@@ -5,8 +5,14 @@
   "repository": "git@github.com:richardsimko/github-tag-action.git",
   "author": "Richard Simko <rick.simko@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc"
+  },
   "dependencies": {
     "@actions/core": "^1.2.6",
     "@actions/github": "^5.0.0"
+  },
+  "devDependencies": {
+    "typescript": "4.9.3"
   }
 }

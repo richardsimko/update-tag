@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "allowUnusedLabels": false,
+    "allowUnreachableCode": false,
+    "alwaysStrict": true,
+    "noImplicitOverride": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "declaration": true,
+    "target": "ES2022",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "outDir": "dist"
+  },
+  "ts-node": {
+    "files": true,
+    "swc": true
+  },
+  "lib": ["ES2022"],
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules", "dist/**/*.*"]
+}
