@@ -1,4 +1,4 @@
-name: Update version reference
+name: CI
 on:
   push
 
@@ -9,14 +9,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Extract major version from tag
+      - name: Get tag name
         id: extract-tag
         run: |
           TAG_NAME=${GITHUB_REF//\//-}
-          echo "TAG_NAME=${TAG_NAME}" >> $GITHUB_OUTPUT
-      - name: Update reference to latest version
+          echo "TAG_NAME=test-${TAG_NAME}" >> $GITHUB_OUTPUT
+      - name: Update test tag
         uses: ./
         with:
           tag_name: ${{ steps.extract-tag.outputs.TAG_NAME }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Remove test tag
+        run: |
+          git tag -d ${{ steps.extract-tag.outputs.TAG_NAME }}
+          git push --delete origin ${{ steps.extract-tag.outputs.TAG_NAME }}
