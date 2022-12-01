@@ -20,7 +20,3 @@ jobs:
           tag_name: ${{ steps.extract-tag.outputs.TAG_NAME }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Remove test tag
-        run: |
-          git tag -d ${{ steps.extract-tag.outputs.TAG_NAME }}
-          git push --delete origin ${{ steps.extract-tag.outputs.TAG_NAME }}
