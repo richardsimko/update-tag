@@ -1,6 +1,17 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "dependencyDashboard": true,
+  "labels": ["dependencies"],
   "extends": [
     "config:base"
+  ],
+  "ignoreTests": true,
+  "packageRules": [
+    {
+      "updateTypes": ["minor", "patch", "pin", "digest", "lockFileMaintenance"],
+      "automerge": true,
+      "automergeType": "branch",
+      "addLabels": ["automerge"]
+    }
   ]
 }
