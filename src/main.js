@@ -1,5 +1,6 @@
 const core = require('@actions/core');
-const { GitHub, context } = require('@actions/github');
+const github = require('@actions/github');
+const context = github.context;
 async function run() {
 
   try {
@@ -21,7 +22,7 @@ async function run() {
     }
 
 
-    const octokit = new GitHub(GITHUB_TOKEN);
+    const octokit = github.getOctokit(GITHUB_TOKEN);
     let ref;
     try {
 
