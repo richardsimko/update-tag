@@ -1,0 +1,22 @@
+name: Update version reference
+on:
+  push
+
+jobs:
+  update-ref:
+    name: Update reference
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Extract major version from tag
+        id: extract-tag
+        run: |
+          TAG_NAME=${GITHUB_REF//\//-}
+          echo "TAG_NAME=${TAG_NAME}" >> $GITHUB_OUTPUT
+      - name: Update reference to latest version
+        uses: ./
+        with:
+          tag_name: ${{ steps.extract-tag.outputs.TAG_NAME }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
