@@ -6,6 +6,13 @@
     "config:base"
   ],
   "ignoreTests": true,
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": [
+      "before 8am on monday",
+      "before 8am on tuesday"
+    ]
+  },
   "packageRules": [
     {
       "updateTypes": ["minor", "patch", "pin", "digest", "lockFileMaintenance"],
@@ -13,5 +20,6 @@
       "automergeType": "branch",
       "addLabels": ["automerge"]
     }
-  ]
+  ],
+  
 }
