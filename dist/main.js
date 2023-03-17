@@ -28,17 +28,17 @@ const github = __importStar(require("@actions/github"));
 async function run() {
     try {
         const { GITHUB_SHA, GITHUB_TOKEN } = process.env;
-        const tagName = core.getInput("tag_name");
+        const tagName = core.getInput('tag_name');
         if (!GITHUB_SHA) {
-            core.setFailed("Missing GITHUB_SHA");
+            core.setFailed('Missing GITHUB_SHA');
             return;
         }
         if (!GITHUB_TOKEN) {
-            core.setFailed("Missing GITHUB_TOKEN");
+            core.setFailed('Missing GITHUB_TOKEN');
             return;
         }
         if (!tagName) {
-            core.setFailed("Missing tag_name");
+            core.setFailed('Missing tag_name');
             return;
         }
         const octokit = github.getOctokit(GITHUB_TOKEN);
