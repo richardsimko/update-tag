@@ -12,7 +12,7 @@ jobs:
       - name: Prepare Node
         uses: actions/setup-node@v3
         with:
-          node-version: '19'
+          node-version: 'latest'
           cache: 'yarn'
       - name: Install
         run: yarn install
