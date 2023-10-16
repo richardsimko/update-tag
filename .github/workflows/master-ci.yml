@@ -1,6 +1,5 @@
 name: CI
-on:
-  push
+on: push
 
 jobs:
   update-ref:
@@ -26,7 +25,7 @@ jobs:
           TAG_NAME=${GITHUB_REF//\//-}
           echo "TAG_NAME=test-${TAG_NAME}" >> $GITHUB_OUTPUT
       - name: Update test tag
-        uses: ./
+        uses: richardsimko/update-tag@master
         with:
           tag_name: ${{ steps.extract-tag.outputs.TAG_NAME }}
         env:
