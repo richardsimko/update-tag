@@ -99,7 +99,3 @@ typings/
 
 # TernJS port file
 .tern-port
-
-node_modules/typescript
-node_modules/.bin/tsc
-node_modules/.bin/tsserver
