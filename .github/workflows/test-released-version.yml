@@ -15,7 +15,7 @@ jobs:
           node-version: 'latest'
           cache: 'yarn'
       - name: Update test tag
-        uses: richardsimko/update-tag@v1
+        uses: richardsimko/update-tag@master
         with:
           tag_name: test-released-version
         env:
