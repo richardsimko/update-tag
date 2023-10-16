@@ -1,0 +1,22 @@
+name: Test Released Version
+on:
+  workflow_dispatch:
+
+jobs:
+  update-ref:
+    name: Update reference
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Prepare Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'latest'
+          cache: 'yarn'
+      - name: Update test tag
+        uses: richardsimko/update-tag@v1
+        with:
+          tag_name: test-released-version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
