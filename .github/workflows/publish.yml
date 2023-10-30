@@ -28,7 +28,8 @@ jobs:
       - id: update-version
         shell: bash
         name: Update package.json version
-        run: echo "version=$(yarn version --no-git-tag-version --new-version ${{ inputs.versionType }})" >> $GITHUB_OUTPUT
+        # Use npm because yarn is for some reason not able to output only the version name
+        run: echo "version=$(npm version --no-git-tag-version --${{ inputs.versionType }})" >> $GITHUB_OUTPUT
       - name: Commit new version
         shell: bash
         run: |
