@@ -1,7 +1,7 @@
 name: Update version reference
 on:
   release:
-    types: [edited, published]
+    types: [published]
 jobs:
   update-ref:
     name: Update reference
@@ -16,8 +16,14 @@ jobs:
           MAJOR_VERSION=$(echo "${FULL_VERSION%.*.*}")
           echo "TAG_NAME=${MAJOR_VERSION}" >> $GITHUB_OUTPUT
       - name: Update reference to latest version
-        uses: ./
+        uses: richardsimko/update-tag@main
         with:
           tag_name: ${{ steps.extract-version.outputs.TAG_NAME }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Update reference to latest version
+        uses: richardsimko/update-tag@main
+        with:
+          tag_name: latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
