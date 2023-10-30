@@ -1,0 +1,56 @@
+name: Publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      versionType:
+        type: choice
+        description: '<major|minor|patch>'
+        required: true
+        default: 'minor'
+        options:
+          - major
+          - minor
+          - patch
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_ACCESS_TOKEN }}
+      - name: Prepare Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ vars.NODE_VERSION}}
+          cache: 'yarn'
+      - id: update-version
+        shell: bash
+        name: Update package.json version
+        run: echo "::set-output name=version::$(yarn version --no-git-tag-version ${{ inputs.versionType }})"
+      - name: Commit new version
+        shell: bash
+        run: |
+          git config --global user.name 'Richard Simko'
+          git config --global user.email '<1245031+richardsimko@users.noreply.github.com>'
+          git commit -am "Release ${{steps.update-version.outputs.version}}"
+          git pull --rebase
+          git push
+      - name: Checkout release branch
+        shell: bash
+        run: |
+          git checkout -b release/${{steps.update-version.outputs.version}}
+      - name: Install
+        run: yarn install
+      - name: Build
+        run: yarn run build
+      - name: Commit node_modules and dist
+        shell: bash
+        run: |
+          git add --force dist/
+          git add --force node_modules/
+          git commit -am "Build ${{steps.update-version.outputs.version}}"
+          git tag "test-v${{steps.update-version.outputs.version}}"
+          git push --set-upstream origin release/${{steps.update-version.outputs.version}}
+          git push --tags
