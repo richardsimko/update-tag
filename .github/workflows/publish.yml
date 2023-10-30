@@ -49,6 +49,7 @@ jobs:
         shell: bash
         run: |
           git checkout -b release/${{steps.update-version.outputs.version}}
+          git push origin release/${{steps.update-version.outputs.version}}
       - name: Install
         run: yarn install --frozen-lockfile
       - name: Build
