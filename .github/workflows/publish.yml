@@ -52,6 +52,16 @@ jobs:
           git add --force dist/
           git add --force node_modules/
           git commit -am "Build ${{steps.update-version.outputs.version}}"
-          git tag "test-v${{steps.update-version.outputs.version}}"
           git push --set-upstream origin release/${{steps.update-version.outputs.version}}
-          git push --tags
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          draft: true
+          name: v${{steps.update-version.outputs.version}}
+          target_commitish: release/${{steps.update-version.outputs.version}}
+          generate_release_notes: true
+      - name: Delete release branch
+        shell: bash
+        run: |
+          git checkout main
+          git push origin --delete release/${{steps.update-version.outputs.version}}
