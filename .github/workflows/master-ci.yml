@@ -25,7 +25,7 @@ jobs:
           TAG_NAME=${GITHUB_REF//\//-}
           echo "TAG_NAME=test-${TAG_NAME}" >> $GITHUB_OUTPUT
       - name: Update test tag
-        uses: richardsimko/update-tag@main
+        uses: ./
         with:
           tag_name: ${{ steps.extract-tag.outputs.TAG_NAME }}
         env:
