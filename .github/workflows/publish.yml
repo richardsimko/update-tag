@@ -14,6 +14,7 @@ on:
           - patch
 jobs:
   publish:
+    name: Publish ${{ inputs.versionType }} release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -65,5 +66,4 @@ jobs:
           draft: true
           body: ${{steps.build_changelog.outputs.changelog}}
           name: ${{steps.update-version.outputs.version}}
-          tag_name: ${{steps.update-version.outputs.version}}
           target_commitish: refs/tags/${{steps.update-version.outputs.version}}
