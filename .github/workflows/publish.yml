@@ -48,6 +48,7 @@ jobs:
       - name: Build
         run: yarn run build
       - name: Commit node_modules and dist
+        id: commit
         shell: bash
         run: |
           git add --force dist/
@@ -55,6 +56,7 @@ jobs:
           git commit -am "Build ${{steps.update-version.outputs.version}}"
           git tag ${{steps.update-version.outputs.version}}
           git push origin ${{steps.update-version.outputs.version}}
+          echo "sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
       - name: 'Build Changelog'
         id: build_changelog
         uses: mikepenz/release-changelog-builder-action@v4
@@ -66,4 +68,5 @@ jobs:
           draft: true
           body: ${{steps.build_changelog.outputs.changelog}}
           name: ${{steps.update-version.outputs.version}}
-          target_commitish: refs/tags/${{steps.update-version.outputs.version}}
+          tag_name: ${{steps.update-version.outputs.version}}
+          target_commitish: ${{ steps.commit.outputs.sha }}
