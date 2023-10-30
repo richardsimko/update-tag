@@ -44,9 +44,11 @@ jobs:
         run: |
           git checkout -b release/${{steps.update-version.outputs.version}}
       - name: Install
-        run: yarn install
+        run: yarn install --frozen-lockfile
       - name: Build
         run: yarn run build
+      - name: Install prod dependencies
+        run: rm -rf node_modules && yarn install --production --frozen-lockfile
       - name: Commit node_modules and dist
         id: commit
         shell: bash
@@ -64,7 +66,6 @@ jobs:
             token: '${{ github.token }}'
             configurationJson: |
               {
-                "template": "#{{CHANGELOG}}\n\n<details>\n<summary>Uncategorized</summary>\n\n#{{UNCATEGORIZED}}\n</details>",
                 "categories": [
                   {
                     "title": "## 🚀 Features",
@@ -81,6 +82,10 @@ jobs:
                   {
                       "title": "## 📦 Dependencies",
                       "labels": ["dependencies"]
+                  },
+                  {
+                      "title": "## ❓ Uncategorized",
+                      "labels": []
                   }
                 ]
               }
