@@ -52,17 +52,18 @@ jobs:
           git add --force dist/
           git add --force node_modules/
           git commit -am "Build ${{steps.update-version.outputs.version}}"
-          git push --set-upstream origin release/${{steps.update-version.outputs.version}}
+          git tag ${{steps.update-version.outputs.version}}
+          git push origin ${{steps.update-version.outputs.version}}
+      - name: 'Build Changelog'
+        id: build_changelog
+        uses: mikepenz/release-changelog-builder-action@v4
+        with:
+            token: '${{ github.token }}'
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           draft: true
+          body: ${{steps.build_changelog.outputs.changelog}}
           name: ${{steps.update-version.outputs.version}}
           tag_name: ${{steps.update-version.outputs.version}}
-          target_commitish: release/${{steps.update-version.outputs.version}}
-          generate_release_notes: true
-      - name: Delete release branch
-        shell: bash
-        run: |
-          git checkout main
-          git push origin --delete release/${{steps.update-version.outputs.version}}
+          target_commitish: refs/tags/${{steps.update-version.outputs.version}}
