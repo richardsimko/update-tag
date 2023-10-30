@@ -12,7 +12,7 @@ jobs:
       - name: Prepare Node
         uses: actions/setup-node@v4
         with:
-          node-version: 'latest'
+          node-version: '20'
           cache: 'yarn'
       - name: Update test tag
         uses: richardsimko/update-tag@v1
