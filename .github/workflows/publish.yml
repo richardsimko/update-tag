@@ -57,7 +57,8 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           draft: true
-          name: v${{steps.update-version.outputs.version}}
+          name: ${{steps.update-version.outputs.version}}
+          tag_name: ${{steps.update-version.outputs.version}}
           target_commitish: release/${{steps.update-version.outputs.version}}
           generate_release_notes: true
       - name: Delete release branch
