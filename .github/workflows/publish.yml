@@ -15,6 +15,10 @@ on:
 jobs:
   publish:
     name: Publish ${{ inputs.versionType }} release
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the
+      # added or changed files to the repository.
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -30,15 +34,17 @@ jobs:
         shell: bash
         name: Update package.json version
         # Use npm because yarn is for some reason not able to output only the version name
-        run: echo "version=$(npm version --no-git-tag-version ${{ inputs.versionType }})" >> $GITHUB_OUTPUT
-      - name: Commit new version
-        shell: bash
         run: |
-          git config --global user.name 'Richard Simko'
-          git config --global user.email '<1245031+richardsimko@users.noreply.github.com>'
-          git commit -am "Release ${{steps.update-version.outputs.version}}"
-          git pull --rebase
-          git push
+          echo "version=$(npm version --no-git-tag-version ${{ inputs.versionType }})" >> $GITHUB_OUTPUT
+          git add .
+      - uses: planetscale/ghcommit-action@v0.1.6
+        name: Commit new version
+        with:
+          commit_message: "🤖 Release ${{steps.update-version.outputs.version}}"
+          repo: ${{ github.repository }}
+          branch: main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Checkout release branch
         shell: bash
         run: |
@@ -49,15 +55,26 @@ jobs:
         run: yarn run build
       - name: Install prod dependencies
         run: rm -rf node_modules && yarn install --production --frozen-lockfile
-      - name: Commit node_modules and dist
-        id: commit
+      - name: Add node_modules and dist
         shell: bash
         run: |
           git add --force dist/
           git add --force node_modules/
-          git commit -am "Build ${{steps.update-version.outputs.version}}"
+      - uses: planetscale/ghcommit-action@v0.1.6
+        name: Commit node_modules and dist
+        with:
+          commit_message: "🤖 Build ${{steps.update-version.outputs.version}}"
+          repo: ${{ github.repository }}
+          branch: release/${{steps.update-version.outputs.version}}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create tag
+        id: tag
+        shell: bash
+        run: |
           git tag ${{steps.update-version.outputs.version}}
           git push origin ${{steps.update-version.outputs.version}}
+          git push origin --delete release/${{steps.update-version.outputs.version}}
           echo "sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
       - name: 'Build Changelog'
         id: build_changelog
@@ -96,4 +113,4 @@ jobs:
           body: ${{steps.build_changelog.outputs.changelog}}
           name: ${{steps.update-version.outputs.version}}
           tag_name: ${{steps.update-version.outputs.version}}
-          target_commitish: ${{ steps.commit.outputs.sha }}
+          target_commitish: ${{ steps.tag.outputs.sha }}
