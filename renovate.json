@@ -17,6 +17,7 @@
     "richardsimko"
   ],
   "assignAutomerge": false,
+  "automergeType": "pr",
   "packageRules": [
     {
       "matchUpdateTypes": [
@@ -27,10 +28,16 @@
         "lockFileMaintenance"
       ],
       "automerge": true,
-      "automergeType": "pr",
       "addLabels": [
         "automerge"
       ]
+    },
+    {
+      "matchDepTypes": [
+        "devDependencies",
+        "lockFileMaintenance"
+      ],
+      "autoMergeType": "branch"
     }
   ]
 }
