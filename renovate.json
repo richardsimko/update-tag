@@ -17,39 +17,20 @@
     "richardsimko"
   ],
   "assignAutomerge": false,
-  "automergeType": "pr",
   "packageRules": [
     {
       "matchUpdateTypes": [
         "minor",
         "patch",
         "pin",
-        "digest"
-      ],
-      "automerge": true,
-      "addLabels": [
-        "automerge"
-      ]
-    },
-    {
-      "matchUpdateTypes": [
-        "minor",
-        "patch",
-        "pin",
-        "digest"
-      ],
-      "matchDepTypes": [
-        "devDependencies"
-      ],
-      "automerge": true,
-      "autoMergeType": "branch"
-    },
-    {
-      "matchUpdateTypes": [
+        "digest",
         "lockFileMaintenance"
       ],
       "automerge": true,
-      "autoMergeType": "branch"
+      "automergeType": "pr",
+      "addLabels": [
+        "automerge"
+      ]
     }
   ]
 }
