@@ -24,8 +24,7 @@
         "minor",
         "patch",
         "pin",
-        "digest",
-        "lockFileMaintenance"
+        "digest"
       ],
       "automerge": true,
       "addLabels": [
@@ -33,10 +32,23 @@
       ]
     },
     {
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "pin",
+        "digest"
+      ],
       "matchDepTypes": [
-        "devDependencies",
+        "devDependencies"
+      ],
+      "automerge": true,
+      "autoMergeType": "branch"
+    },
+    {
+      "matchUpdateTypes": [
         "lockFileMaintenance"
       ],
+      "automerge": true,
       "autoMergeType": "branch"
     }
   ]
