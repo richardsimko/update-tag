@@ -37,7 +37,7 @@ jobs:
         run: |
           echo "version=$(npm version --no-git-tag-version ${{ inputs.versionType }})" >> $GITHUB_OUTPUT
           git add .
-      - uses: planetscale/ghcommit-action@v0.1.19
+      - uses: planetscale/ghcommit-action@v0.1.20
         name: Commit new version
         with:
           commit_message: "🤖 Release ${{steps.update-version.outputs.version}}"
@@ -61,7 +61,7 @@ jobs:
         run: |
           git add --force dist/
           git add --force node_modules/
-      - uses: planetscale/ghcommit-action@v0.1.19
+      - uses: planetscale/ghcommit-action@v0.1.20
         name: Commit node_modules and dist
         with:
           commit_message: "🤖 Build ${{steps.update-version.outputs.version}}"
