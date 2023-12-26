@@ -1213,9 +1213,9 @@ supports-color@^7.1.0:
     has-flag "^4.0.0"
 
 synckit@^0.8.6:
-  version "0.8.6"
-  resolved "https://registry.yarnpkg.com/synckit/-/synckit-0.8.6.tgz#b69b7fbce3917c2673cbdc0d87fb324db4a5b409"
-  integrity sha512-laHF2savN6sMeHCjLRkheIU4wo3Zg9Ln5YOjOo7sZ5dVQW8yF5pPE5SIw1dsPhq3TRp1jisKRCdPhfs/1WMqDA==
+  version "0.8.7"
+  resolved "https://registry.yarnpkg.com/synckit/-/synckit-0.8.7.tgz#7812bc5f42113c9cec2db4c2b952f7e9e0aff0f3"
+  integrity sha512-Ic2DW4WMr0gJ7z9rXYGlWPNBVzmsIZLFfKeVhmuVBUtw6ZOFB1GZnCcWQLc7OuBFLVLHKFAdaIZNc/yyUEvZ1g==
   dependencies:
     "@pkgr/utils" "^2.4.2"
     tslib "^2.6.2"
