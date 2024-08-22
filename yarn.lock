@@ -21,9 +21,9 @@
     "@octokit/plugin-rest-endpoint-methods" "^10.0.0"
 
 "@actions/http-client@^2.0.1", "@actions/http-client@^2.2.0":
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/@actions/http-client/-/http-client-2.2.2.tgz#4fd561ee9b5b8ebf74cf09cc6c596a677337e382"
-  integrity sha512-2TvX5LskKQzDDQI+bobIDGAjkn0NJiQlg4MTrKnZ8HfQ7nDEUbtJ1ytxPDb2bfk3Hr2XD99X8oAJISAmIoiSAQ==
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/@actions/http-client/-/http-client-2.2.3.tgz#31fc0b25c0e665754ed39a9f19a8611fc6dab674"
+  integrity sha512-mx8hyJi/hjFvbPokCg4uRd4ZX78t+YyRPtnKWwIl+RzNaVuFpQHfmlGVfsKEJN8LwTCvL+DfVgAM04XaHkm6bA==
   dependencies:
     tunnel "^0.0.6"
     undici "^5.25.4"
@@ -1035,9 +1035,9 @@ typescript@5.5.4:
   integrity sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==
 
 undici-types@~6.19.2:
-  version "6.19.6"
-  resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-6.19.6.tgz#e218c3df0987f4c0e0008ca00d6b6472d9b89b36"
-  integrity sha512-e/vggGopEfTKSvj4ihnOLTsqhrKRN3LeO6qSN/GxohhuRv8qH9bNQ4B8W7e/vFL+0XTnmHPB4/kegunZGA4Org==
+  version "6.19.8"
+  resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-6.19.8.tgz#35111c9d1437ab83a7cdc0abae2f26d88eda0a02"
+  integrity sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==
 
 undici@^5.25.4:
   version "5.28.4"
