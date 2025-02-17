@@ -135,10 +135,10 @@
     before-after-hook "^2.2.0"
     universal-user-agent "^6.0.0"
 
-"@octokit/endpoint@^9.0.1":
-  version "9.0.5"
-  resolved "https://registry.yarnpkg.com/@octokit/endpoint/-/endpoint-9.0.5.tgz#e6c0ee684e307614c02fc6ac12274c50da465c44"
-  integrity sha512-ekqR4/+PCLkEBF6qgj8WqJfvDq65RH85OAgrtnVp1mSxaXF03u2xW/hUdweGS5654IlC0wkNYC18Z50tSYTAFw==
+"@octokit/endpoint@^9.0.6":
+  version "9.0.6"
+  resolved "https://registry.yarnpkg.com/@octokit/endpoint/-/endpoint-9.0.6.tgz#114d912108fe692d8b139cfe7fc0846dfd11b6c0"
+  integrity sha512-H1fNTMA57HbkFESSt3Y9+FBICv+0jFceJFPWDePYlR/iMGrwM5ph+Dd4XRQs+8X+PUFURLQgX9ChPfhJ/1uNQw==
   dependencies:
     "@octokit/types" "^13.1.0"
     universal-user-agent "^6.0.0"
@@ -163,9 +163,9 @@
   integrity sha512-izFjMJ1sir0jn0ldEKhZ7xegCTj/ObmEDlEfpFrx4k/JyZSMRHbO3/rBwgE7f3m2DHt+RrNGIVw4wSmwnm3t/g==
 
 "@octokit/plugin-paginate-rest@^9.0.0":
-  version "9.2.1"
-  resolved "https://registry.yarnpkg.com/@octokit/plugin-paginate-rest/-/plugin-paginate-rest-9.2.1.tgz#2e2a2f0f52c9a4b1da1a3aa17dabe3c459b9e401"
-  integrity sha512-wfGhE/TAkXZRLjksFXuDZdmGnJQHvtU/joFQdweXUgzo1XwvBCD4o4+75NtFfjfLK5IwLf9vHTfSiU3sLRYpRw==
+  version "9.2.2"
+  resolved "https://registry.yarnpkg.com/@octokit/plugin-paginate-rest/-/plugin-paginate-rest-9.2.2.tgz#c516bc498736bcdaa9095b9a1d10d9d0501ae831"
+  integrity sha512-u3KYkGF7GcZnSD/3UP0S7K5XUFT2FkOQdcfXZGZQPGv3lm4F2Xbf71lvjldr8c1H3nNbF+33cLEkWYbokGWqiQ==
   dependencies:
     "@octokit/types" "^12.6.0"
 
@@ -176,22 +176,22 @@
   dependencies:
     "@octokit/types" "^12.6.0"
 
-"@octokit/request-error@^5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@octokit/request-error/-/request-error-5.1.0.tgz#ee4138538d08c81a60be3f320cd71063064a3b30"
-  integrity sha512-GETXfE05J0+7H2STzekpKObFe765O5dlAKUTLNGeH+x47z7JjXHfsHKo5z21D/o/IOZTUEI6nyWyR+bZVP/n5Q==
+"@octokit/request-error@^5.1.0", "@octokit/request-error@^5.1.1":
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@octokit/request-error/-/request-error-5.1.1.tgz#b9218f9c1166e68bb4d0c89b638edc62c9334805"
+  integrity sha512-v9iyEQJH6ZntoENr9/yXxjuezh4My67CBSu9r6Ve/05Iu5gNgnisNWOsoJHTP6k0Rr0+HQIpnH+kyammu90q/g==
   dependencies:
     "@octokit/types" "^13.1.0"
     deprecation "^2.0.0"
     once "^1.4.0"
 
 "@octokit/request@^8.3.0", "@octokit/request@^8.3.1":
-  version "8.4.0"
-  resolved "https://registry.yarnpkg.com/@octokit/request/-/request-8.4.0.tgz#7f4b7b1daa3d1f48c0977ad8fffa2c18adef8974"
-  integrity sha512-9Bb014e+m2TgBeEJGEbdplMVWwPmL1FPtggHQRkV+WVsMggPtEkLKPlcVYm/o8xKLkpJ7B+6N8WfQMtDLX2Dpw==
+  version "8.4.1"
+  resolved "https://registry.yarnpkg.com/@octokit/request/-/request-8.4.1.tgz#715a015ccf993087977ea4365c44791fc4572486"
+  integrity sha512-qnB2+SY3hkCmBxZsR/MPCybNmbJe4KAlfWErXq+rBKkQJlbjdJeS85VI9r8UqeLYLvnAenU8Q1okM/0MBsAGXw==
   dependencies:
-    "@octokit/endpoint" "^9.0.1"
-    "@octokit/request-error" "^5.1.0"
+    "@octokit/endpoint" "^9.0.6"
+    "@octokit/request-error" "^5.1.1"
     "@octokit/types" "^13.1.0"
     universal-user-agent "^6.0.0"
 
@@ -203,9 +203,9 @@
     "@octokit/openapi-types" "^20.0.0"
 
 "@octokit/types@^13.0.0", "@octokit/types@^13.1.0":
-  version "13.7.0"
-  resolved "https://registry.yarnpkg.com/@octokit/types/-/types-13.7.0.tgz#22d0e26a8c9f53599bfb907213d8ccde547f36aa"
-  integrity sha512-BXfRP+3P3IN6fd4uF3SniaHKOO4UXWBfkdR3vA8mIvaoO/wLjGN5qivUtW0QRitBHHMcfC41SLhNVYIZZE+wkA==
+  version "13.8.0"
+  resolved "https://registry.yarnpkg.com/@octokit/types/-/types-13.8.0.tgz#3815885e5abd16ed9ffeea3dced31d37ce3f8a0a"
+  integrity sha512-x7DjTIbEpEWXK99DMd01QfWy0hd5h4EN+Q7shkdKds3otGQP+oWE/y0A76i1OvH9fygo4ddvNf7ZvF0t78P98A==
   dependencies:
     "@octokit/openapi-types" "^23.0.1"
 
@@ -680,9 +680,9 @@ ignore@^5.2.0, ignore@^5.3.1:
   integrity sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==
 
 import-fresh@^3.2.1:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/import-fresh/-/import-fresh-3.3.0.tgz#37162c25fcb9ebaa2e6e53d5b4d88ce17d9e0c2b"
-  integrity sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/import-fresh/-/import-fresh-3.3.1.tgz#9cecb56503c0ada1f2741dbbd6546e4b13b57ccf"
+  integrity sha512-TR3KfrTZTYLPB6jUjfx6MF9WcWrHL9su5TObK4ZkYgBdWKPOFoSoQIdEuTuR82pmtxH2spWG9h6etwfr1pLBqQ==
   dependencies:
     parent-module "^1.0.0"
     resolve-from "^4.0.0"
