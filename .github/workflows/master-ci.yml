@@ -29,4 +29,4 @@ jobs:
         with:
           tag_name: ${{ steps.extract-tag.outputs.TAG_NAME }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}

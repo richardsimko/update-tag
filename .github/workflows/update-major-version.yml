@@ -20,10 +20,10 @@ jobs:
         with:
           tag_name: ${{ steps.extract-version.outputs.TAG_NAME }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
       - name: Update reference to latest version
         uses: richardsimko/update-tag@main
         with:
           tag_name: latest
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}

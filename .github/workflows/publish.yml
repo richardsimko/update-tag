@@ -23,8 +23,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GH_ACCESS_TOKEN }}
       - name: Prepare Node
         uses: actions/setup-node@v4
         with:
@@ -44,7 +42,7 @@ jobs:
           repo: ${{ github.repository }}
           branch: main
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
       - name: Checkout release branch
         shell: bash
         run: |
@@ -68,7 +66,7 @@ jobs:
           repo: ${{ github.repository }}
           branch: release/${{steps.update-version.outputs.version}}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
       - name: Create tag
         id: tag
         shell: bash
