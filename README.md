@@ -15,8 +15,6 @@ jobs:
         uses: richardsimko/update-tag@v1
         with:
           tag_name: name-of-tag
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ### Inputs
