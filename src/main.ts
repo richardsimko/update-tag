@@ -12,7 +12,7 @@ async function run() {
     }
 
     if (!GITHUB_TOKEN) {
-      GITHUB_TOKEN = core.getInput("github_token");
+      GITHUB_TOKEN = core.getInput('github_token');
     }
 
     if (!tagName) {
