@@ -3,7 +3,8 @@ import * as github from '@actions/github';
 
 async function run() {
   try {
-    const { GITHUB_SHA, GITHUB_TOKEN } = process.env;
+    const { GITHUB_SHA } = process.env;
+    let { GITHUB_TOKEN } = process.env;
     const tagName = core.getInput('tag_name');
     if (!GITHUB_SHA) {
       core.setFailed('Missing GITHUB_SHA');
@@ -11,8 +12,7 @@ async function run() {
     }
 
     if (!GITHUB_TOKEN) {
-      core.setFailed('Missing GITHUB_TOKEN');
-      return;
+      GITHUB_TOKEN = core.getInput("github_token");
     }
 
     if (!tagName) {
