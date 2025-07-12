@@ -15,7 +15,7 @@ jobs:
         uses: richardsimko/update-tag@v1
         with:
           tag_name: name-of-tag
-          github_token: ${{ secret.GITHUB_TOKEN }} # If you need to control the tags of other repositories, you need to provide this parameter
+          #github_token: ${{ secret.GITHUB_TOKEN }} # If you need to control the tags of other repositories, you need to provide this parameter
 ```
 
 ### Inputs
