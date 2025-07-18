@@ -16,7 +16,7 @@ jobs:
           MAJOR_VERSION=$(echo "${FULL_VERSION%.*.*}")
           echo "TAG_NAME=${MAJOR_VERSION}" >> $GITHUB_OUTPUT
       - name: Update reference to latest version
-        uses: richardsimko/update-tag@main
+        uses: richardsimko/update-tag@v1
         with:
           tag_name: ${{ steps.extract-version.outputs.TAG_NAME }}
         env:
