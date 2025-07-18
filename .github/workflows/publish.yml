@@ -73,6 +73,7 @@ jobs:
         shell: bash
         run: |
           echo "Tagging ${{ steps.commit.outputs.commit-hash }}"
+          git fetch
           git tag ${{steps.update-version.outputs.version}} ${{ steps.commit.outputs.commit-hash }}
           git push origin ${{steps.update-version.outputs.version}}
       - name: 'Build Changelog'
