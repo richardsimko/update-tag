@@ -5,6 +5,10 @@ inputs:
   tag_name:
     description: "Name of the tag to create or update"
     required: true
+  github_token:
+    description: "Authorized secret GitHub Personal Access Token. Defaults to github.token"
+    required: false
+    default: ${{ github.token }}
 
 runs:
   using: "node20"
