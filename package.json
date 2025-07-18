@@ -1,6 +1,6 @@
 {
   "name": "github-tag-action",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "index.js",
   "repository": "git@github.com:richardsimko/github-tag-action.git",
   "author": "Richard Simko <1245031+richardsimko@users.noreply.github.com>",
