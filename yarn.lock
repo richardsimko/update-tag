@@ -464,10 +464,10 @@ escape-string-regexp@^4.0.0:
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-4.0.0.tgz#14ba83a5d373e3d311e5afca29cf5bfad965bf34"
   integrity sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==
 
-eslint-config-prettier@^9.0.0:
-  version "9.1.1"
-  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-9.1.1.tgz#dd4a5f7c804818e9b358489c7f8c0d63c4be8bdd"
-  integrity sha512-jeeI5lD4PrC1NPaugxD+JcFvelVATpVMRyK7MoW/QPLlwDjvZoOwq39SDRdiKzYIOjPG6nxOeXRHk3cFYj/psg==
+eslint-config-prettier@^10.0.0:
+  version "10.1.7"
+  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-10.1.7.tgz#c62a7128f48f60fd7bd737be481d42bbca207428"
+  integrity sha512-xztdELuHs7grBM+qdMUF4M4SjPpeOMN3kx7sGU6ifl5yibck/GRa0+0d+m1lPsGNkd+2bIWh2lUUTzX7MX/obw==
 
 eslint-plugin-prettier@^5.0.0:
   version "5.5.1"
