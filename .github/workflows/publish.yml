@@ -60,7 +60,7 @@ jobs:
           git add --force dist/
           git add --force node_modules/
       - uses: planetscale/ghcommit-action@v0.2.15
-        id: tag
+        id: commit
         name: Commit node_modules and dist
         with:
           commit_message: "🤖 Build ${{steps.update-version.outputs.version}}"
@@ -72,8 +72,8 @@ jobs:
         id: tag
         shell: bash
         run: |
-          echo "Tagging ${{ steps.tag.outputs.commit-hash }}
-          git tag ${{steps.update-version.outputs.version}} ${{ steps.tag.outputs.commit-hash }}
+          echo "Tagging ${{ steps.commit.outputs.commit-hash }}
+          git tag ${{steps.update-version.outputs.version}} ${{ steps.commit.outputs.commit-hash }}
           git push origin ${{steps.update-version.outputs.version}}
       - name: 'Build Changelog'
         id: build_changelog
@@ -112,4 +112,4 @@ jobs:
           body: ${{steps.build_changelog.outputs.changelog}}
           name: ${{steps.update-version.outputs.version}}
           tag_name: ${{steps.update-version.outputs.version}}
-          target_commitish: ${{ steps.tag.outputs.commit-hash }}
+          target_commitish: ${{ steps.commit.outputs.commit-hash }}
