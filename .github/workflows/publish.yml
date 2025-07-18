@@ -71,7 +71,7 @@ jobs:
         id: tag
         shell: bash
         run: |
-          git tag ${{steps.update-version.outputs.version}}
+          git tag ${{steps.update-version.outputs.version}} release/${{steps.update-version.outputs.version}}
           git push origin ${{steps.update-version.outputs.version}}
           git push origin --delete release/${{steps.update-version.outputs.version}}
           echo "sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
