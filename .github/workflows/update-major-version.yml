@@ -22,7 +22,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
       - name: Update reference to latest version
-        uses: richardsimko/update-tag@main
+        uses: richardsimko/update-tag@v1
         with:
           tag_name: latest
         env:
