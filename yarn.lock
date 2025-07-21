@@ -212,10 +212,10 @@
   dependencies:
     "@octokit/openapi-types" "^24.2.0"
 
-"@pkgr/core@^0.3.0":
-  version "0.3.4"
-  resolved "https://registry.yarnpkg.com/@pkgr/core/-/core-0.3.4.tgz#2c5c1a7e55d184212766d9d8958219c09dc0fb40"
-  integrity sha512-MrfbnMgfKexic6mxC4xrSBVQHSvmvhz7qtSDG5cHg4xn8kHXkPltUY44R5u4ghYf+1rXpOvC2drbMcE1rZ3a2A==
+"@pkgr/core@^0.2.9":
+  version "0.2.9"
+  resolved "https://registry.yarnpkg.com/@pkgr/core/-/core-0.2.9.tgz#d229a7b7f9dac167a156992ef23c7f023653f53b"
+  integrity sha512-QNqXyfVS2wm9hweSYD2O7F0G06uurj9kZ96TRQE5Y9hU7+tgdZwIkbAKc5Ocy1HxEY2kuDQa6cQ1WRs/O5LFKA==
 
 "@types/node@^22.0.0":
   version "22.16.5"
@@ -991,11 +991,11 @@ supports-color@^7.1.0:
     has-flag "^4.0.0"
 
 synckit@^0.11.7:
-  version "0.11.10"
-  resolved "https://registry.yarnpkg.com/synckit/-/synckit-0.11.10.tgz#57a756c49e5b02d61f60de2ea0a741b11df47c99"
-  integrity sha512-n6Ze5AGOURWdQ9Kg/wqI1//4OBw9V1zuOTj7uQlpAjtpe2bhgPBpmSFXvapbP3KxcRoqo996J28kdT2ly4w9UA==
+  version "0.11.11"
+  resolved "https://registry.yarnpkg.com/synckit/-/synckit-0.11.11.tgz#c0b619cf258a97faa209155d9cd1699b5c998cb0"
+  integrity sha512-MeQTA1r0litLUf0Rp/iisCaL8761lKAZHaimlbGK4j0HysC4PLfqygQj9srcs0m2RdtDYnF8UuYyKpbjHYp7Jw==
   dependencies:
-    "@pkgr/core" "^0.3.0"
+    "@pkgr/core" "^0.2.9"
 
 text-table@^0.2.0:
   version "0.2.0"
