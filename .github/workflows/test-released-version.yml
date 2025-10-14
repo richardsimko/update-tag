@@ -10,7 +10,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
       - name: Prepare Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ vars.NODE_VERSION}}
           cache: 'yarn'
