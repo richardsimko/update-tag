@@ -78,7 +78,7 @@ jobs:
           git push origin ${{steps.update-version.outputs.version}}
       - name: 'Build Changelog'
         id: build_changelog
-        uses: mikepenz/release-changelog-builder-action@v5
+        uses: mikepenz/release-changelog-builder-action@v6
         with:
             token: '${{ github.token }}'
             configurationJson: |
