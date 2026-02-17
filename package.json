@@ -10,7 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@actions/core": "^1.2.6",
+    "@actions/core": "^3.0.0",
     "@actions/github": "^8.0.0"
   },
   "devDependencies": {
