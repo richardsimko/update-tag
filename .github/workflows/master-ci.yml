@@ -1,6 +1,10 @@
 name: CI
 on: push
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   update-ref:
     name: Update reference
