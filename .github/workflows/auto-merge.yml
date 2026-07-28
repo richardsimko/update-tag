@@ -1,0 +1,48 @@
+name: Auto-merge Dependabot and lockfile maintenance PRs
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - reopened
+      - synchronize
+  workflow_run:
+    workflows: ["CI"] # Only monitor the main CI workflow
+    types: [completed]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  dependabot:
+    name: Auto-merge Dependabot PRs
+    runs-on: ubuntu-latest
+    if: github.actor == 'dependabot[bot]' && github.event_name == 'pull_request_target'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+      - name: Fetch Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v3
+      - name: Enable auto-merge for Dependabot PRs
+        if: (steps.metadata.outputs.update-type == 'version-update:semver-patch' || steps.metadata.outputs.update-type == 'version-update:semver-minor')
+        run: |
+          # Enable auto-merge with squash merge
+          gh pr merge --auto --squash --subject "${{ github.event.pull_request.title }} (#${{ github.event.pull_request.number }})" --body "Signed-off-by: dependabot[bot] <support@github.com>
+          Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>" ${{ github.event.pull_request.number }}
+        id: merge
+        env:
+          GH_TOKEN: ${{ secrets.DEPENDABOT_GH_ACCESS_TOKEN }}
+      - name: Add reviewer on failure
+        if: ${{ failure() || steps.merge.outcome != 'success' }}
+        run: |
+          gh api \
+          --method POST \
+          -H "Accept: application/vnd.github+json" \
+          -H "X-GitHub-Api-Version: 2022-11-28" \
+          /repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/requested_reviewers \
+          -f "reviewers[]=${{ env.REVIEWER }}" \
+        env:
+          REVIEWER: richardsimko
+          GH_TOKEN: ${{ github.token }}
