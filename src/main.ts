@@ -28,7 +28,7 @@ async function run() {
         ref: `tags/${tagName}`,
       });
     } catch (e) {
-      if (e.status === 404) {
+      if (e instanceof Error && 'status' in e && e.status === 404) {
         // Ignore tag not existing
       } else {
         throw e;
@@ -48,7 +48,7 @@ async function run() {
       });
     }
   } catch (error) {
-    core.setFailed(error.message);
+    core.setFailed(error instanceof Error ? error.message : String(error));
   }
 }
 

@@ -9,6 +9,7 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "declaration": true,
+    "rootDir": "src",
     "target": "ES2022",
     "allowJs": true,
     "esModuleInterop": true,
