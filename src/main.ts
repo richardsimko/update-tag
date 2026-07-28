@@ -1,9 +1,7 @@
+import * as core from '@actions/core';
 import * as github from '@actions/github';
 
 async function run() {
-  // @actions/core is ESM-only as of v3; it must be loaded via dynamic import
-  // since this project compiles to CommonJS.
-  const core = await import('@actions/core');
   try {
     const { GITHUB_SHA } = process.env;
     let { GITHUB_TOKEN } = process.env;
