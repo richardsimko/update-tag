@@ -17,8 +17,9 @@ jobs:
     name: Publish ${{ inputs.versionType }} release
     permissions:
       # Give the default GITHUB_TOKEN write permission to commit and push the
-      # added or changed files to the repository.
+      # added or changed files to the repository, and to open pull requests.
       contents: write
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -35,12 +36,27 @@ jobs:
         run: |
           echo "version=$(npm version --no-git-tag-version ${{ inputs.versionType }})" >> $GITHUB_OUTPUT
           git add .
+      - name: Create version bump branch
+        shell: bash
+        run: |
+          git checkout -b version-bump/${{steps.update-version.outputs.version}}
+          git push origin version-bump/${{steps.update-version.outputs.version}}
       - uses: planetscale/ghcommit-action@v0.2.22
         name: Commit new version
         with:
           commit_message: "🤖 Release ${{steps.update-version.outputs.version}}"
           repo: ${{ github.repository }}
-          branch: main
+          branch: version-bump/${{steps.update-version.outputs.version}}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Open version bump pull request
+        shell: bash
+        run: |
+          gh pr create \
+            --base main \
+            --head version-bump/${{steps.update-version.outputs.version}} \
+            --title "🤖 Release ${{steps.update-version.outputs.version}}" \
+            --body "Automated version bump to ${{steps.update-version.outputs.version}}."
         env:
           GITHUB_TOKEN: ${{ github.token }}
       - name: Checkout release branch
